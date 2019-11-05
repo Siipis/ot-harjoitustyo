@@ -78,3 +78,5 @@ Date:   Tue Nov 5 15:56:36 2019 +0200
 
  tiedosto.txt | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
+
+Tuotetaan tiedostoristiriita.
