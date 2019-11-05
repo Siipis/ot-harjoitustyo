@@ -1,0 +1,80 @@
+$ git log --stat | cat
+commit 39a9ca26dac5b78da7bafef6a93d3ed6b9d5e6e0
+Author: Ami Surakka <siipis@live.co.uk>
+Date:   Tue Nov 5 16:40:11 2019 +0200
+
+    muutettu tiedostot
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 1e9220c24ea5a346460c1d9720c182c8cc146f14
+Author: Ami Surakka <siipis@live.co.uk>
+Date:   Tue Nov 5 16:37:03 2019 +0200
+
+    luotu tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 84615da9fbb1ba705ae8d5caf6d656d0ff8c34dd
+Author: Ami Surakka <siipis@live.co.uk>
+Date:   Tue Nov 5 16:29:37 2019 +0200
+
+    lisäyksiä ja muutoksia
+
+ eka.txt    | 4 ++++
+ kolmas.txt | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit 9df61248509f6b1502914fc9beb53876980404c7
+Author: Ami Surakka <siipis@live.co.uk>
+Date:   Tue Nov 5 16:26:11 2019 +0200
+
+    uudelleenimentä ja muutos
+
+ tiedosto.txt => eka.txt | 2 --
+ toinen.txt              | 1 -
+ 2 files changed, 3 deletions(-)
+
+commit 782119619bf90d300465387203712cf3b6f98517
+Author: Ami Surakka <siipis@live.co.uk>
+Date:   Tue Nov 5 16:21:31 2019 +0200
+
+    paljon tekstiä
+
+ tiedosto.txt | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 9dde4c25f9a0b3be31c01d90e8f3702130c88dd2
+Author: Ami Surakka <siipis@live.co.uk>
+Date:   Tue Nov 5 16:07:03 2019 +0200
+
+    stuff ja muutoksia
+
+ kolmas.txt      | 1 +
+ stuff/thing.txt | 0
+ toinen.txt      | 1 +
+ 3 files changed, 2 insertions(+)
+
+commit edd31e9a3a05e7639522c5a1fb6140e07464fc89
+Author: Ami Surakka <siipis@live.co.uk>
+Date:   Tue Nov 5 15:58:22 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 3b3951c19e05e2521c1dde303076f9a70e214c95
+Author: Ami Surakka <siipis@live.co.uk>
+Date:   Tue Nov 5 15:56:36 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
