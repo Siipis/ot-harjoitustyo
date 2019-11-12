@@ -19,6 +19,11 @@ public class MaksukorttiTest {
     }
 
     @Test
+    public void saldoPalautuuOikein() {
+        assertEquals(10, kortti.saldo());
+    }
+
+    @Test
     public void konstruktoriAsettaaSaldonOikein() {
         assertEquals("saldo: 0.10", kortti.toString());
     }
