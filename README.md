@@ -1,10 +1,22 @@
-# Ohjelmistotekniikka
+# Nimigeneraattori
+Sovelluksen avulla käyttäjä voi generoida fiktiivisiä nimiä valitsemistaan aakkosista ja tallentamaan eri aakkospainotukset uudelleenkäytettäviksi "kieliksi".
+
+### Sovelluksen käynnistäminen
+Sovelluksen voi käynnistää komennolla `mvn compile exec:java -q`
+
+# Dokumentaatio
+[Käyttöohje](dokumentaatio/kayttoohje.md)
+
+[Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
+
+[Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
+
+[Testausdokumentti](dokumentaatio/testaus.md)
+
+[Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
+
+# Kurssimateriaali
+Tämä projekti on osa Helsingin yliopiston kurssia Ohjelmistotekniikka.
+
 Kurssimateriaali löytyy täältä: https://github.com/mluukkai/ohjelmistotekniikka-syksy-2019
 
-## Viikko 1
-[gitlog.txt](https://github.com/Siipis/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](https://github.com/Siipis/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-## Viikko 2
-[Laskaritehtävien palautus](https://github.com/Siipis/ot-harjoitustyo/tree/master/laskarit/viikko2)
