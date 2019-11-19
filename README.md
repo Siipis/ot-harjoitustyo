@@ -5,15 +5,15 @@ Sovelluksen avulla käyttäjä voi generoida fiktiivisiä nimiä valitsemistaan 
 Sovelluksen voi käynnistää komennolla `mvn compile exec:java -q`
 
 # Dokumentaatio
-[Käyttöohje](dokumentaatio/kayttoohje.md)
+[Käyttöohje](Nimigeneraattori/dokumentaatio/kayttoohje.md)
 
-[Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
+[Vaatimusmäärittely](Nimigeneraattori/dokumentaatio/vaatimusmaarittely.md)
 
-[Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
+[Arkkitehtuurikuvaus](Nimigeneraattori/dokumentaatio/arkkitehtuuri.md)
 
-[Testausdokumentti](dokumentaatio/testaus.md)
+[Testausdokumentti](Nimigeneraattori/dokumentaatio/testaus.md)
 
-[Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
+[Työaikakirjanpito](Nimigeneraattori/dokumentaatio/tuntikirjanpito.md)
 
 # Kurssimateriaali
 Tämä projekti on osa Helsingin yliopiston kurssia Ohjelmistotekniikka.
