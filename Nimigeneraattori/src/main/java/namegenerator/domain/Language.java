@@ -32,7 +32,9 @@ public class Language {
     public void addLetter(Letter letter, int weight) {
         LetterWeight letterWeight = new LetterWeight(letter, weight);
 
-        if (this.letters.contains(letterWeight)) return;
+        if (this.letters.contains(letterWeight)) {
+            return;
+        }
         this.letters.add(letterWeight);
     }
 
@@ -44,14 +46,18 @@ public class Language {
     public int getWeight(Letter letter) {
         LetterWeight weight = this.findByLetter(letter);
 
-        if (weight == null) return 0;
+        if (weight == null) {
+            return 0;
+        }
         return weight.weight();
     }
 
     public void setWeight(Letter letter, int weight) {
         LetterWeight letterWeight = this.findByLetter(letter);
 
-        if (letterWeight == null) return;
+        if (letterWeight == null) {
+            return;
+        }
         letterWeight.setWeight(weight);
     }
 
@@ -73,7 +79,9 @@ public class Language {
 
     private LetterWeight findByLetter(Letter letter) {
         for (LetterWeight weight : this.letters) {
-            if (weight.letter().equals(letter)) return weight;
+            if (weight.letter().equals(letter)) {
+                return weight;
+            }
         }
 
         return null;

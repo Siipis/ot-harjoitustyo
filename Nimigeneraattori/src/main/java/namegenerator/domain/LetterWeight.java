@@ -25,11 +25,15 @@ public class LetterWeight {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         LetterWeight compared = (LetterWeight) o;
         return weight == compared.weight &&
-                letter.equals(compared.letter);
+            letter.equals(compared.letter);
     }
 
     @Override
