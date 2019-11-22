@@ -1,4 +1,4 @@
-package namegenerator.domain;
+package namegenerator.domain.exceptions;
 
 public class LettersNotFoundException extends Exception {
 }

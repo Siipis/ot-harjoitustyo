@@ -1,5 +1,7 @@
 package namegenerator.domain;
 
+import namegenerator.domain.exceptions.NameLengthException;
+
 import java.util.ArrayList;
 
 public class Language {
@@ -43,24 +45,6 @@ public class Language {
         this.letters.remove(weight);
     }
 
-    public int getWeight(Letter letter) {
-        LetterWeight weight = this.findByLetter(letter);
-
-        if (weight == null) {
-            return 0;
-        }
-        return weight.weight();
-    }
-
-    public void setWeight(Letter letter, int weight) {
-        LetterWeight letterWeight = this.findByLetter(letter);
-
-        if (letterWeight == null) {
-            return;
-        }
-        letterWeight.setWeight(weight);
-    }
-
     /**
      * =========================================
      *
@@ -91,7 +75,11 @@ public class Language {
         return this.minLength;
     }
 
-    public void setMinLength(int minLength) {
+    public void setMinLength(int minLength) throws NameLengthException {
+        if (minLength > this.maxLength) {
+            throw new NameLengthException("Min length can't be higher than max length.");
+        }
+
         this.minLength = minLength;
     }
 
@@ -99,7 +87,11 @@ public class Language {
         return this.maxLength;
     }
 
-    public void setMaxLength(int maxLength) {
+    public void setMaxLength(int maxLength) throws NameLengthException {
+        if (maxLength < this.minLength) {
+            throw new NameLengthException("Max length can't be lower than min length.");
+        }
+
         this.maxLength = maxLength;
     }
 

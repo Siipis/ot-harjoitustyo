@@ -3,6 +3,9 @@ package namegenerator.domain;
 import java.util.Objects;
 
 public class LetterWeight {
+    private static int maxWeight = 10;
+    private static int minWeight = 0;
+
     private Letter letter;
     private int weight;
 
@@ -21,6 +24,26 @@ public class LetterWeight {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public void increaseWeight() {
+        if (this.weight < maxWeight) {
+            this.weight++;
+        }
+    }
+
+    public void decreaseWeight() {
+        if (this.weight > minWeight) {
+            this.weight--;
+        }
+    }
+
+    public int getMaxWeight() {
+        return maxWeight;
+    }
+
+    public int getMinWeight() {
+        return minWeight;
     }
 
     @Override

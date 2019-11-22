@@ -18,6 +18,7 @@ public class UI extends Application {
 
         Scene scene = new Scene(root);
 
+        stage.setTitle("Name Generator");
         stage.setScene(scene);
         stage.show();
     }

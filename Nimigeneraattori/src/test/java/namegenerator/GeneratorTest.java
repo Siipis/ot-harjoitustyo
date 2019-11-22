@@ -1,10 +1,9 @@
 package namegenerator;
 
 import namegenerator.domain.*;
-import org.junit.After;
-import org.junit.AfterClass;
+import namegenerator.domain.exceptions.LettersNotFoundException;
+import namegenerator.domain.exceptions.NameLengthException;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -40,16 +39,24 @@ public class GeneratorTest {
 
     @Test
     public void generatesValidLength() throws LettersNotFoundException {
-        language.setMinLength(5);
-        language.setMaxLength(5);
+        try {
+            language.setMinLength(5);
+            language.setMaxLength(5);
+        } catch (NameLengthException e) {
+            e.printStackTrace();
+        }
 
         assertEquals(5, generator.generate(language).length());
     }
 
     @Test
     public void generatesValidMinLength() throws LettersNotFoundException {
-        language.setMinLength(3);
-        language.setMaxLength(10);
+        try {
+            language.setMinLength(3);
+            language.setMaxLength(10);
+        } catch (NameLengthException e) {
+            e.printStackTrace();
+        }
 
         int shortest = Integer.MAX_VALUE;
         for (int i = 1; i <= sampleSize; i++) {
@@ -65,8 +72,12 @@ public class GeneratorTest {
 
     @Test
     public void generatesValidMaxLength() throws LettersNotFoundException {
-        language.setMinLength(3);
-        language.setMaxLength(10);
+        try {
+            language.setMinLength(3);
+            language.setMaxLength(10);
+        } catch (NameLengthException e) {
+            e.printStackTrace();
+        }
 
         int longest = Integer.MIN_VALUE;
         for (int i = 1; i <= sampleSize; i++) {
