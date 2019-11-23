@@ -21,7 +21,7 @@ public class Controller implements Initializable {
     private Label generatedName;
 
     @FXML
-    private TilePane letterList;
+    private GridPane letterList;
 
     @FXML
     public NumericField maxLengthField;
@@ -81,8 +81,16 @@ public class Controller implements Initializable {
     }
 
     private void initializeLetters() {
+        int row = 0;
+        int col = 0;
         for (LetterWeight weight : language.letters()) {
-            letterList.getChildren().add(makeLetter(weight));
+            letterList.add(makeLetter(weight), col, row);
+
+            col++;
+            if (col >= 4) {
+                col = 0;
+                row++;
+            }
         }
     }
 
@@ -114,10 +122,6 @@ public class Controller implements Initializable {
         slider.setValue(weight.weight());
         slider.setMin(weight.getMinWeight());
         slider.setMax(weight.getMaxWeight());
-        slider.setMajorTickUnit(5);
-        slider.setMinorTickCount(4);
-        slider.setShowTickMarks(true);
-        slider.setSnapToTicks(true);
 
         slider.valueProperty().addListener((o, oldValue, newValue) -> {
             weight.setWeight(oldValue.intValue());

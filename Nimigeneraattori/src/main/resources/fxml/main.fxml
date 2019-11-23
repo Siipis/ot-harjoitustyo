@@ -22,7 +22,7 @@
                 <Label fx:id="lengthFieldError" styleClass="error"/>
             </children>
         </FlowPane>
-        <TilePane fx:id="letterList"/>
+        <GridPane fx:id="letterList"/>
     </children>
     <stylesheets>
         <URL value="@../styles/stylesheet.css"/>
