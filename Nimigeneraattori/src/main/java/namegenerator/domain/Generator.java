@@ -49,7 +49,7 @@ public class Generator {
         return true;
     }
 
-    private ArrayList<Letter> makeLetterList(Language language) {
+    public ArrayList<Letter> makeLetterList(Language language) {
         ArrayList<Letter> letters = new ArrayList<>();
 
         for (LetterWeight w : language.letters()) {

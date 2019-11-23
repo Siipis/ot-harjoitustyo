@@ -43,7 +43,9 @@
                 <version>0.8.0</version>
                 <configuration>
                     <excludes>
-                        <exclude>namegenerator/ui</exclude>
+                        <exclude>namegenerator/Main.class</exclude>
+                        <exclude>namegenerator/ui/**</exclude>
+                        <exclude>namegenerator/domain/exceptions/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

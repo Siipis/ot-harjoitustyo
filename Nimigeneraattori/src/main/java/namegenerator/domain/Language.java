@@ -76,6 +76,10 @@ public class Language {
     }
 
     public void setMinLength(int minLength) throws NameLengthException {
+        if (minLength <= 0) {
+            throw new NameLengthException("Min length must be a positive integer.");
+        }
+
         if (minLength > this.maxLength) {
             throw new NameLengthException("Min length can't be higher than max length.");
         }
@@ -88,6 +92,10 @@ public class Language {
     }
 
     public void setMaxLength(int maxLength) throws NameLengthException {
+        if (maxLength <= 0) {
+            throw new NameLengthException("Max length must be a positive integer.");
+        }
+
         if (maxLength < this.minLength) {
             throw new NameLengthException("Max length can't be lower than min length.");
         }
