@@ -12,13 +12,13 @@ public class LengthSelectionController extends ChildController {
     private Language currentLanguage;
 
     @FXML
-    private NumericField maxLengthField;
+    private NumericField maxLength;
 
     @FXML
-    private NumericField minLengthField;
+    private NumericField minLength;
 
     @FXML
-    private Label lengthFieldError;
+    private Label error;
 
     @Override
     public void render() {
@@ -38,21 +38,21 @@ public class LengthSelectionController extends ChildController {
     }
 
     private void initialize() {
-        minLengthField.setText("" + currentLanguage.getMinLength());
-        maxLengthField.setText("" + currentLanguage.getMaxLength());
+        minLength.setText("" + currentLanguage.getMinLength());
+        maxLength.setText("" + currentLanguage.getMaxLength());
 
-        lengthFieldError.setVisible(false);
+        error.setVisible(false);
 
         this.initializeMinLengthField();
         this.initializeMaxLengthField();
     }
 
     private void initializeMinLengthField() {
-        minLengthField.textProperty().addListener((o, oldValue, newValue) -> {
+        minLength.textProperty().addListener((o, oldValue, newValue) -> {
             this.hideLengthError();
 
             try {
-                currentLanguage.setMinLength(minLengthField.value());
+                currentLanguage.setMinLength(minLength.value());
             } catch (NameLengthException e) {
                 this.showLengthError(e.getMessage());
             }
@@ -60,11 +60,11 @@ public class LengthSelectionController extends ChildController {
     }
 
     private void initializeMaxLengthField() {
-        maxLengthField.textProperty().addListener((o, oldValue, newValue) -> {
+        maxLength.textProperty().addListener((o, oldValue, newValue) -> {
             this.hideLengthError();
 
             try {
-                currentLanguage.setMaxLength(maxLengthField.value());
+                currentLanguage.setMaxLength(maxLength.value());
             } catch (NameLengthException e) {
                 this.showLengthError(e.getMessage());
             }
@@ -74,13 +74,13 @@ public class LengthSelectionController extends ChildController {
     private void showLengthError(String message) {
         this.setError(true);
 
-        lengthFieldError.setText(message);
-        lengthFieldError.setVisible(true);
+        error.setText(message);
+        error.setVisible(true);
     }
 
     private void hideLengthError() {
         this.setError(false);
 
-        lengthFieldError.setVisible(false);
+        error.setVisible(false);
     }
 }
