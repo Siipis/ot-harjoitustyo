@@ -9,6 +9,10 @@ public class Name implements Comparable<Name> {
         this.letters.add(letter);
     }
 
+    public ArrayList<Letter> letters() {
+        return letters;
+    }
+
     public int length() {
         return this.letters.size();
     }

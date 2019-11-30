@@ -3,61 +3,141 @@ package namegenerator.domain;
 import namegenerator.domain.exceptions.LettersNotFoundException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Generator {
 
+    private Name name;
+
+    private Language language;
+
     private Random random = new Random();
 
-    public Name generate(Language language) throws LettersNotFoundException {
+    public Generator(Language language) {
+        this.language = language;
+    }
+
+    public Name generate() throws LettersNotFoundException {
         if (language.letters().size() == 0) {
             throw new LettersNotFoundException();
         }
 
-        Name name = new Name();
+        name = new Name();
 
-        while (name.length() < this.pickLength(language)) {
-            Letter letter = this.pickLetter(language, name);
+        System.out.println("Starting on a new name...");
 
-            if (letterIsValid(letter)) {
-                name.addLetter(letter);
+        while (name.length() < this.pickLength()) {
+            Letter letter = this.pickLetter();
+
+            if (letter == null) {
+                break;
             }
+
+            name.addLetter(letter);
+
+            System.out.println("Picked " + letter);
         }
+
+        System.out.println("Final result: " + name);
 
         return name;
     }
 
-    private int pickLength(Language language) {
+    private int pickLength() {
         int min = language.getMinLength();
         int max = language.getMaxLength();
 
         return random.nextInt((max - min) + 1) + min;
     }
 
-    private Letter pickLetter(Language language, Name name) {
-        // TODO: use existing letters to influence choice
-        // TODO: use language configuration to influence letter grouping
+    private Letter pickLetter() {
+        ArrayList<Letter> letters = makeLetterList();
 
-        ArrayList<Letter> letters = makeLetterList(language);
+        System.out.println("Available letters: " + letters);
+
+        if (letters.size() == 0) {
+            return null;
+        }
 
         int index = random.nextInt(letters.size());
 
         return letters.get(index);
     }
 
-    private boolean letterIsValid(Letter letter) {
-        return true;
-    }
-
-    public ArrayList<Letter> makeLetterList(Language language) {
+    public ArrayList<Letter> makeLetterList() {
         ArrayList<Letter> letters = new ArrayList<>();
 
         for (LetterWeight w : language.letters()) {
-            for (int i = 0; i < w.weight(); i++) {
-                letters.add(w.letter());
+            if (this.letterIsValid(w)) {
+                for (int i = 0; i < w.weight(); i++) {
+                    letters.add(w.letter());
+                }
             }
         }
 
         return letters;
+    }
+
+    public boolean letterIsValid(LetterWeight weight) {
+        Letter letter = weight.letter();
+
+        int maxExactMatches = Integer.MAX_VALUE;
+        int maxTypeMatches = Integer.MAX_VALUE;
+
+        if (letter.getType() == LetterType.BOTH) {
+            maxExactMatches = language.hasDoubleVowels() || language.hasDoubleConsonants() ? 2 : 1;
+            maxTypeMatches = Integer.max(language.getVowelGroupSize(), language.getConsonantGroupSize());
+        }
+
+        if (letter.getType() == LetterType.CONSONANT) {
+            maxExactMatches = language.hasDoubleConsonants() ? 2 : 1;
+            maxTypeMatches = language.getConsonantGroupSize();
+        }
+
+        if (letter.getType() == LetterType.VOWEL) {
+            maxExactMatches = language.hasDoubleVowels() ? 2 : 1;
+            maxTypeMatches = language.getVowelGroupSize();
+        }
+
+        return countExactMatches(letter) < maxExactMatches && countTypeMatches(letter) < maxTypeMatches;
+    }
+
+    private int countExactMatches(Letter letter) {
+        int count = 0;
+
+        for (Letter l : this.reverse(name)) {
+            if (l.equals(letter)) {
+                count++;
+            } else {
+                return count;
+            }
+        }
+
+        return count;
+    }
+
+    private int countTypeMatches(Letter letter) {
+        int count = 0;
+
+        for (Letter l : this.reverse(name)) {
+            if (l.getType() == letter.getType()) {
+                count++;
+            } else {
+                return count;
+            }
+        }
+
+        return count;
+    }
+
+    private ArrayList<Letter> reverse(Name name) {
+        ArrayList<Letter> reversed = new ArrayList<>(name.letters());
+
+        Collections.reverse(reversed);
+
+        return reversed;
     }
 }

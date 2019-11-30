@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import namegenerator.ui.control.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="letterConfig" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="namegenerator.ui.LetterConfigController">
+    <children>
+        <HBox styleClass="well">
+            <Label text="Vowel group size"/>
+            <NumericField fx:id="vowelGroupSize" size="2"/>
+            <Label text="Allow double vowels"/>
+            <CheckBox fx:id="allowDoubleVowels"/>
+        </HBox>
+
+        <HBox styleClass="well">
+            <Label text="Consonant group size"/>
+            <NumericField fx:id="consonantGroupSize" size="2"/>
+            <Label text="Allow double consonants"/>
+            <CheckBox fx:id="allowDoubleConsonants"/>
+        </HBox>
+
+        <Label fx:id="error" styleClass="error"/>
+    </children>
+</VBox>

@@ -5,7 +5,7 @@
 
 <HBox id="generatorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="namegenerator.ui.GeneratorController">
     <children>
-        <Button fx:id="button" onAction="#clickedGenerateButton" text="Generate"/>
+        <Button fx:id="button" onAction="#handleClick" text="Generate"/>
         <Label fx:id="result"/>
     </children>
 </HBox>

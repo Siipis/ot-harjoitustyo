@@ -31,21 +31,15 @@
 }
 
 #lengthSelection {
-    -fx-pref-height: 30;
-    -fx-padding: 20 10 20 10;
+    -fx-pref-width: -1;
+    -fx-pref-height: 40;
+    -fx-alignment: center;
     -fx-spacing: 20;
 }
 
-#lengthSelection Label {
-    -fx-padding: 0 10 0 10;
-}
-
-#lengthSelection NumericField {
-    -fx-pref-width: 60;
-    -fx-font-size: 14;
-    -fx-background-color: white;
-    -fx-border-radius: 3;
-    -fx-border-color: #666666;
+#lengthSelection HBox {
+    -fx-alignment: center;
+    -fx-spacing: 10;
 }
 
 #letterList {
@@ -74,6 +68,35 @@
     -fx-pref-width: -1;
 }
 
+#letterConfig {
+    -fx-pref-width: -1;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+#letterConfig HBox {
+    -fx-alignment: center;
+}
+
 .error {
     -fx-text-fill: red;
+    -fx-spacing: 20;
+    -fx-font-weight: bold;
+}
+
+.well {
+    -fx-padding: 10;
+    -fx-background-color: #eee;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-spacing: 10;
+}
+
+NumericField {
+    -fx-pref-width: 40;
+    -fx-font-size: 14;
+    -fx-background-color: white;
+    -fx-border-radius: 3;
+    -fx-border-color: #666666;
 }

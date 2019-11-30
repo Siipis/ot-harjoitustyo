@@ -1,12 +1,16 @@
 package namegenerator.domain;
 
 public class Letter {
-    private LetterType type;
     private Character character;
+    private LetterType type;
 
-    public Letter(LetterType type, Character character) {
-        this.type = type;
+    public Letter(Character character, LetterType type) {
         this.character = character;
+        this.type = type;
+    }
+
+    public LetterType getType() {
+        return type;
     }
 
     @Override

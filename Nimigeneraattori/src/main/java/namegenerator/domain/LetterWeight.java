@@ -3,7 +3,7 @@ package namegenerator.domain;
 import java.util.Objects;
 
 public class LetterWeight {
-    private static int maxWeight = 10;
+    private static int maxWeight = 15;
     private static int minWeight = 0;
 
     private Letter letter;
@@ -11,7 +11,7 @@ public class LetterWeight {
 
     public LetterWeight(Letter letter, int weight) {
         this.letter = letter;
-        this.weight = weight;
+        this.setWeight(weight);
     }
 
     public Letter letter() {
@@ -22,7 +22,11 @@ public class LetterWeight {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(int weight) throws IndexOutOfBoundsException {
+        if (weight > maxWeight) {
+            throw new IndexOutOfBoundsException("Letter weight can't be higher than " + maxWeight);
+        }
+
         this.weight = weight;
     }
 

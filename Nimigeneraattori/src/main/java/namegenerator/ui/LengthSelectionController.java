@@ -1,9 +1,10 @@
 package namegenerator.ui;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import namegenerator.domain.Language;
-import namegenerator.domain.exceptions.NameLengthException;
+import namegenerator.domain.exceptions.IntegerOutOfBoundsException;
 import namegenerator.ui.control.NumericField;
 
 
@@ -41,44 +42,38 @@ public class LengthSelectionController extends ChildController {
         minLength.setText("" + currentLanguage.getMinLength());
         maxLength.setText("" + currentLanguage.getMaxLength());
 
+        minLength.textProperty().addListener(makeListener(minLength));
+        maxLength.textProperty().addListener(makeListener(maxLength));
+
         error.setVisible(false);
-
-        this.initializeMinLengthField();
-        this.initializeMaxLengthField();
     }
 
-    private void initializeMinLengthField() {
-        minLength.textProperty().addListener((o, oldValue, newValue) -> {
-            this.hideLengthError();
+    private ChangeListener<String> makeListener(NumericField field) {
+        return (o, oldValue, newValue) -> {
+            this.hideError();
 
             try {
-                currentLanguage.setMinLength(minLength.value());
-            } catch (NameLengthException e) {
-                this.showLengthError(e.getMessage());
+                if (field == minLength) {
+                    currentLanguage.setMinLength(minLength.value());
+                }
+
+                if (field == maxLength) {
+                    currentLanguage.setMaxLength(maxLength.value());
+                }
+            } catch (IntegerOutOfBoundsException e) {
+                this.showError(e.getMessage());
             }
-        });
+        };
     }
 
-    private void initializeMaxLengthField() {
-        maxLength.textProperty().addListener((o, oldValue, newValue) -> {
-            this.hideLengthError();
-
-            try {
-                currentLanguage.setMaxLength(maxLength.value());
-            } catch (NameLengthException e) {
-                this.showLengthError(e.getMessage());
-            }
-        });
-    }
-
-    private void showLengthError(String message) {
+    private void showError(String message) {
         this.setError(true);
 
         error.setText(message);
         error.setVisible(true);
     }
 
-    private void hideLengthError() {
+    private void hideError() {
         this.setError(false);
 
         error.setVisible(false);

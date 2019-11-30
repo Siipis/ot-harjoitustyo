@@ -6,14 +6,14 @@ Sovelluksen avulla käyttäjä voi generoida fiktiivisiä nimiä valitsemistaan 
 Sovelluksessa on vain yksi käyttäjärooli eli *normaali käyttäjä*.
 
 ## Perusversion tarjoama toiminnallisuus
-- [ ] Käyttäjä voi generoida nimen satunnaisgeneraattorin avulla
+- [x] Käyttäjä voi generoida nimen satunnaisgeneraattorin avulla
     - [x] Käyttäjä voi valita kirjaimille yksilölliset painotukset
     - [x] Käyttäjä voi asettaa nimelle nimimimitan
     - [x] Käyttäjä voi asettaa nimelle maksimimitan
-    - [ ] Käyttäjä voi määrittää, montako vokaalia sallitaan peräkkäin
-    - [ ] Käyttäjä voi määrittää, montako konsonanttia sallitaan peräkkäin
-    - [ ] Käyttäjä voi kytkeä tuplakonsonantit päälle tai pois päältä
-    - [ ] Käyttäjä voi kytkeä tuplavokaalit päälle tai pois päältä
+    - [x] Käyttäjä voi määrittää, montako vokaalia sallitaan peräkkäin
+    - [x] Käyttäjä voi määrittää, montako konsonanttia sallitaan peräkkäin
+    - [x] Käyttäjä voi kytkeä tuplakonsonantit päälle tai pois päältä
+    - [x] Käyttäjä voi kytkeä tuplavokaalit päälle tai pois päältä
 - [ ] Käyttäjä voi tallentaa valitsemansa kirjainpainotukset kieleksi
 - [ ] Käyttäjä voi ladata käyttöön jo tallenetun kielen
 - [ ] Käyttäjä voi poistaa luodun kielen

@@ -8,7 +8,6 @@ import namegenerator.domain.*;
 
 public class Controller implements Initializable {
 
-
     private Language language;
 
     @FXML
@@ -20,9 +19,12 @@ public class Controller implements Initializable {
     @FXML
     private LettersController lettersController;
 
+    @FXML
+    private LetterConfigController letterConfigController;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Pass main controller to child controllers
+        // Bind main controller to child controllers
         for (ChildController child : this.children()) {
             child.setParent(this);
         }
@@ -66,6 +68,7 @@ public class Controller implements Initializable {
             lengthSelectionController,
             generatorController,
             lettersController,
+            letterConfigController,
         };
     }
 }

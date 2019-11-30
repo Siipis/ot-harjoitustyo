@@ -1,6 +1,6 @@
 package namegenerator.domain;
 
-import namegenerator.domain.exceptions.NameLengthException;
+import namegenerator.domain.exceptions.IntegerOutOfBoundsException;
 
 import java.util.ArrayList;
 
@@ -19,17 +19,9 @@ public class Language {
         this.maxLength = 12;
         this.vowelGroupSize = 2;
         this.consonantGroupSize = 2;
-        this.doubleVowels = true;
-        this.doubleConsonants = true;
+        this.doubleVowels = false;
+        this.doubleConsonants = false;
     }
-
-    /**
-     * =========================================
-     *
-     * BUSINESS LOGIC
-     *
-     * =========================================
-     */
 
     public void addLetter(Letter letter, int weight) {
         LetterWeight letterWeight = new LetterWeight(letter, weight);
@@ -57,14 +49,6 @@ public class Language {
         return highest;
     }
 
-    /**
-     * =========================================
-     *
-     * SETTERS AND GETTERS
-     *
-     * =========================================
-     */
-
     public ArrayList<LetterWeight> letters() {
         return this.letters;
     }
@@ -87,13 +71,13 @@ public class Language {
         return this.minLength;
     }
 
-    public void setMinLength(int minLength) throws NameLengthException {
+    public void setMinLength(int minLength) throws IntegerOutOfBoundsException {
         if (minLength <= 0) {
-            throw new NameLengthException("Min length must be a positive integer.");
+            throw new IntegerOutOfBoundsException("Min length must be a positive integer.");
         }
 
         if (minLength > this.maxLength) {
-            throw new NameLengthException("Min length can't be higher than max length.");
+            throw new IntegerOutOfBoundsException("Min length can't be higher than max length.");
         }
 
         this.minLength = minLength;
@@ -103,13 +87,13 @@ public class Language {
         return this.maxLength;
     }
 
-    public void setMaxLength(int maxLength) throws NameLengthException {
+    public void setMaxLength(int maxLength) throws IntegerOutOfBoundsException {
         if (maxLength <= 0) {
-            throw new NameLengthException("Max length must be a positive integer.");
+            throw new IntegerOutOfBoundsException("Max length must be a positive integer.");
         }
 
         if (maxLength < this.minLength) {
-            throw new NameLengthException("Max length can't be lower than min length.");
+            throw new IntegerOutOfBoundsException("Max length can't be lower than min length.");
         }
 
         this.maxLength = maxLength;
@@ -119,7 +103,11 @@ public class Language {
         return this.vowelGroupSize;
     }
 
-    public void setVowelGroupSize(int vowelGroupSize) {
+    public void setVowelGroupSize(int vowelGroupSize) throws IntegerOutOfBoundsException {
+        if (vowelGroupSize <= 0) {
+            throw new IntegerOutOfBoundsException("Vowel group size must be a positive integer.");
+        }
+
         this.vowelGroupSize = vowelGroupSize;
     }
 
@@ -127,7 +115,11 @@ public class Language {
         return this.consonantGroupSize;
     }
 
-    public void setConsonantGroupSize(int consonantGroupSize) {
+    public void setConsonantGroupSize(int consonantGroupSize) throws IntegerOutOfBoundsException {
+        if (consonantGroupSize <= 0) {
+            throw new IntegerOutOfBoundsException("Consonant group size must be a positive integer.");
+        }
+
         this.consonantGroupSize = consonantGroupSize;
     }
 

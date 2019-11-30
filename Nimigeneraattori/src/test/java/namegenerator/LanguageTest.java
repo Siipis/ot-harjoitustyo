@@ -1,11 +1,9 @@
 package namegenerator;
 
 import namegenerator.domain.Language;
-import namegenerator.domain.exceptions.NameLengthException;
+import namegenerator.domain.exceptions.IntegerOutOfBoundsException;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class LanguageTest {
     Language language;
@@ -17,23 +15,23 @@ public class LanguageTest {
         language.setMaxLength(10);
     }
 
-    @Test(expected = NameLengthException.class)
-    public void setMinLengthThrowsExceptionOnNegativeValue() throws NameLengthException {
+    @Test(expected = IntegerOutOfBoundsException.class)
+    public void setMinLengthThrowsExceptionOnNegativeValue() throws IntegerOutOfBoundsException {
         language.setMinLength(-1);
     }
 
-    @Test(expected = NameLengthException.class)
-    public void setMinLengthThrowsExceptionOnTooLargeValue() throws NameLengthException {
+    @Test(expected = IntegerOutOfBoundsException.class)
+    public void setMinLengthThrowsExceptionOnTooLargeValue() throws IntegerOutOfBoundsException {
         language.setMinLength(11);
     }
 
-    @Test(expected = NameLengthException.class)
-    public void setMaxLengthThrowsExceptionOnNegativeValue() throws NameLengthException {
+    @Test(expected = IntegerOutOfBoundsException.class)
+    public void setMaxLengthThrowsExceptionOnNegativeValue() throws IntegerOutOfBoundsException {
         language.setMaxLength(-1);
     }
 
-    @Test(expected = NameLengthException.class)
-    public void setMaxLengthThrowsExceptionOnTooSmallValue() throws NameLengthException {
+    @Test(expected = IntegerOutOfBoundsException.class)
+    public void setMaxLengthThrowsExceptionOnTooSmallValue() throws IntegerOutOfBoundsException {
         language.setMaxLength(4);
     }
 }

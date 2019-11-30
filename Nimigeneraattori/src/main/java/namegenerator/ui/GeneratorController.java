@@ -12,8 +12,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GeneratorController extends ChildController implements Initializable {
-    private Generator generator;
-
     @FXML
     private Button button;
 
@@ -22,8 +20,6 @@ public class GeneratorController extends ChildController implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        generator = new Generator();
-
         result.setText("No name generated yet");
     }
 
@@ -33,11 +29,12 @@ public class GeneratorController extends ChildController implements Initializabl
     }
 
     @FXML
-    private void clickedGenerateButton(ActionEvent event) {
+    private void handleClick(ActionEvent event) {
         try {
-            Name name = generator.generate(parent.getLanguage());
+            Generator generator = new Generator(parent.getLanguage());
+
+            Name name = generator.generate();
             result.setText(name.toString());
-            System.out.println("Generated new name: " + name);
         } catch (LettersNotFoundException e) {
             System.out.println(e.getMessage());
         }

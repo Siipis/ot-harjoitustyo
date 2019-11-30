@@ -2,7 +2,6 @@ package namegenerator;
 
 import namegenerator.domain.*;
 import namegenerator.domain.exceptions.LettersNotFoundException;
-import namegenerator.domain.exceptions.NameLengthException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,26 +16,22 @@ public class GeneratorTest {
 
     private int sampleSize = 10000;
 
-    public GeneratorTest() {
-        generator = new Generator();
-    }
-    
     @Before
     public void setUp() {
         language = new Language();
-        language.addLetter(new Letter(LetterType.VOWEL, 'a'), 1);
-        language.addLetter(new Letter(LetterType.VOWEL, 'e'), 1);
-        language.addLetter(new Letter(LetterType.VOWEL, 'i'), 5);
-        language.addLetter(new Letter(LetterType.CONSONANT, 'k'), 1);
-        language.addLetter(new Letter(LetterType.CONSONANT, 't'), 1);
-        language.addLetter(new Letter(LetterType.CONSONANT, 'n'), 3);
+        language.addLetter(new Letter('a', LetterType.VOWEL), 1);
+        language.addLetter(new Letter('e', LetterType.VOWEL), 1);
+        language.addLetter(new Letter('i', LetterType.VOWEL), 5);
+        language.addLetter(new Letter('k', LetterType.CONSONANT), 1);
+        language.addLetter(new Letter('t', LetterType.CONSONANT), 1);
+        language.addLetter(new Letter('n', LetterType.CONSONANT), 3);
+
+        generator = new Generator(language);
     }
 
     @Test(expected = LettersNotFoundException.class)
     public void throwsExceptionOnEmptyLanguage() throws LettersNotFoundException {
-        Language language = new Language();
-
-        generator.generate(language);
+        generator.generate();
     }
 
     @Test
@@ -44,7 +39,7 @@ public class GeneratorTest {
         language.setMinLength(5);
         language.setMaxLength(5);
 
-        assertEquals(5, generator.generate(language).toString().length());
+        assertEquals(5, generator.generate().toString().length());
     }
 
     @Test
@@ -54,7 +49,7 @@ public class GeneratorTest {
 
         int shortest = Integer.MAX_VALUE;
         for (int i = 1; i <= sampleSize; i++) {
-            Name name = generator.generate(language);
+            Name name = generator.generate();
 
             if (name.length() < shortest) {
                 shortest = name.length();
@@ -71,7 +66,7 @@ public class GeneratorTest {
 
         int longest = Integer.MIN_VALUE;
         for (int i = 1; i <= sampleSize; i++) {
-            Name name = generator.generate(language);
+            Name name = generator.generate();
 
             if (name.length() > longest) {
                 longest = name.length();
@@ -84,11 +79,11 @@ public class GeneratorTest {
     @Test
     public void generatesValidLetterList() {
         language = new Language();
-        language.addLetter(new Letter(LetterType.VOWEL, 'a'), 1);
-        language.addLetter(new Letter(LetterType.VOWEL, 'e'), 3);
-        language.addLetter(new Letter(LetterType.VOWEL, 'i'), 2);
+        language.addLetter(new Letter('a', LetterType.VOWEL), 1);
+        language.addLetter(new Letter('e', LetterType.VOWEL), 3);
+        language.addLetter(new Letter('i', LetterType.VOWEL), 2);
 
-        ArrayList<Letter> letterList = generator.makeLetterList(language);
+        ArrayList<Letter> letterList = generator.makeLetterList();
 
         assertEquals(6, letterList.size());
         assertEquals("a", letterList.get(0).toString());

@@ -4,12 +4,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane id="lengthSelection" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="namegenerator.ui.LengthSelectionController">
+<VBox id="lengthSelection" styleClass="well" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="namegenerator.ui.LengthSelectionController">
     <children>
-        <Label text="Min Length"/>
-        <NumericField fx:id="minLength" size="2"/>
-        <Label text="Max Length"/>
-        <NumericField fx:id="maxLength" size="2"/>
         <Label fx:id="error" styleClass="error"/>
+
+        <HBox>
+            <HBox>
+                <Label text="Min Length"/>
+                <NumericField fx:id="minLength" size="2" />
+            </HBox>
+
+            <HBox>
+                <Label text="Max Length"/>
+                <NumericField fx:id="maxLength" size="2" />
+            </HBox>
+        </HBox>
     </children>
-</FlowPane>
+</VBox>

@@ -8,8 +8,9 @@
 <VBox id="mainView" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="namegenerator.ui.Controller">
     <children>
         <fx:include fx:id="generator" source="generator.fxml" />
-        <fx:include fx:id="lengthSelection" source="length_selection.fxml" />
         <fx:include fx:id="letters" source="letter_list.fxml" />
+        <fx:include fx:id="lengthSelection" source="length_selection.fxml" />
+        <fx:include fx:id="letterConfig" source="letter_config.fxml" />
     </children>
     <stylesheets>
         <URL value="@../styles/stylesheet.css"/>
