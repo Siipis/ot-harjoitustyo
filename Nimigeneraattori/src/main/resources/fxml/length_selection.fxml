@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import namegenerator.ui.control.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<FlowPane id="lengthSelection" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="namegenerator.ui.LengthSelectionController">
+    <children>
+        <Label text="Min Length"/>
+        <NumericField fx:id="minLengthField" size="2"/>
+        <Label text="Max Length"/>
+        <NumericField fx:id="maxLengthField" size="2"/>
+        <Label fx:id="lengthFieldError" styleClass="error"/>
+    </children>
+</FlowPane>

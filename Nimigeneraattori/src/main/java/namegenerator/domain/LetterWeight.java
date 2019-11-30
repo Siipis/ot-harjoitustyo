@@ -26,18 +26,6 @@ public class LetterWeight {
         this.weight = weight;
     }
 
-    public void increaseWeight() {
-        if (this.weight < maxWeight) {
-            this.weight++;
-        }
-    }
-
-    public void decreaseWeight() {
-        if (this.weight > minWeight) {
-            this.weight--;
-        }
-    }
-
     public int getMaxWeight() {
         return maxWeight;
     }

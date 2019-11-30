@@ -45,6 +45,18 @@ public class Language {
         this.letters.remove(weight);
     }
 
+    public int highestWeight() {
+        int highest = 0;
+
+        for (LetterWeight l : this.letters()) {
+            if (l.weight() > highest) {
+                highest = l.weight();
+            }
+        }
+
+        return highest;
+    }
+
     /**
      * =========================================
      *

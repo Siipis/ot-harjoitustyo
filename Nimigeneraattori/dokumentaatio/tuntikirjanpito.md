@@ -8,5 +8,6 @@
 |        |5     |Versio UI:sta, jossa voi muuttaa kirjainten painotuksia |
 |23.11.  |2     |Testien laajentaminen sekä dokumentaatio |
 |        |2     |pom.xml:n debuggaus |
-|        |1   |UI:n korjaus toimivaksi yliopiston koneella |
-| yht   | 17   | | 
+|        |1     |UI:n korjaus toimivaksi yliopiston koneella |
+|30.11.  |6     |UI:n jakaminen alicontrollereiksi |
+| yht   | 23   | | 
