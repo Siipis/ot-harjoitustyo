@@ -28,6 +28,9 @@ Sovelluksen voi käynnistää komennolla `mvn compile exec:java -q`
 
 [Työaikakirjanpito](Nimigeneraattori/dokumentaatio/tuntikirjanpito.md)
 
+# Releaset
+[Viikko 5](https://github.com/Siipis/ot-harjoitustyo/releases/tag/viikko5)
+
 # Kurssimateriaali
 Tämä projekti on osa Helsingin yliopiston kurssia Ohjelmistotekniikka.
 
