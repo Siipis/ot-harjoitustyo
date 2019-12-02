@@ -12,4 +12,5 @@
 |30.11.  |6     |UI:n jakaminen alicontrollereiksi |
 |        |3     |Versio UI:sta, jossa voi muuttaa kirjainten ryhmittymistä |
 |2.12.   |2     |Testien laajennus |
-| yht    | 28   | | 
+|        |2     |Dokumentaation päivittäminen |
+| yht    | 30   | | 
