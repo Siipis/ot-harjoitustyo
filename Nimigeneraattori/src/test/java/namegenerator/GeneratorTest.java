@@ -1,7 +1,7 @@
 package namegenerator;
 
 import namegenerator.domain.*;
-import namegenerator.domain.exceptions.LettersNotFoundException;
+import namegenerator.domain.exceptions.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ public class GeneratorTest {
     private int sampleSize = 10000;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IntegerOutOfBoundsException {
         language = new Language();
         language.addLetter(new Letter('a', LetterType.VOWEL), 1);
         language.addLetter(new Letter('e', LetterType.VOWEL), 1);
@@ -31,6 +31,8 @@ public class GeneratorTest {
 
     @Test(expected = LettersNotFoundException.class)
     public void throwsExceptionOnEmptyLanguage() throws LettersNotFoundException {
+        generator = new Generator(new Language());
+
         generator.generate();
     }
 
@@ -77,11 +79,13 @@ public class GeneratorTest {
     }
 
     @Test
-    public void generatesValidLetterList() {
+    public void generatesValidLetterList() throws IntegerOutOfBoundsException {
         language = new Language();
         language.addLetter(new Letter('a', LetterType.VOWEL), 1);
         language.addLetter(new Letter('e', LetterType.VOWEL), 3);
         language.addLetter(new Letter('i', LetterType.VOWEL), 2);
+
+        generator = new Generator(language);
 
         ArrayList<Letter> letterList = generator.makeLetterList();
 
@@ -90,5 +94,129 @@ public class GeneratorTest {
         assertEquals("e", letterList.get(1).toString());
         assertEquals("e", letterList.get(3).toString());
         assertEquals("i", letterList.get(4).toString());
+    }
+
+    @Test
+    public void validatorAllowsValidDoubleVowels() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleVowels(true);
+        language.setMinLength(2);
+        language.setMaxLength(2);
+
+        language.addLetter(new Letter('a', LetterType.VOWEL), 1);
+
+        Generator generator = new Generator(language);
+
+        assertEquals("aa", generator.generate().toString());
+    }
+
+    @Test
+    public void validatorRejectsDisallowedDoubleVowels() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleVowels(false);
+        language.setMinLength(2);
+        language.setMaxLength(2);
+
+        language.addLetter(new Letter('a', LetterType.VOWEL), 1);
+
+        Generator generator = new Generator(language);
+
+        assertEquals("a", generator.generate().toString());
+    }
+
+    @Test
+    public void validatorAllowsValidDoubleConsonants() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleConsonants(true);
+        language.setMinLength(2);
+        language.setMaxLength(2);
+
+        language.addLetter(new Letter('b', LetterType.CONSONANT), 1);
+
+        Generator generator = new Generator(language);
+
+        assertEquals("bb", generator.generate().toString());
+    }
+
+    @Test
+    public void validatorRejectsDisallowedDoubleConsonants() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleConsonants(false);
+        language.setMinLength(2);
+        language.setMaxLength(2);
+
+        language.addLetter(new Letter('b', LetterType.CONSONANT), 1);
+
+        Generator generator = new Generator(language);
+
+        assertEquals("b", generator.generate().toString());
+    }
+
+    @Test
+    public void validatorAcceptsValidVowelGroups() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleVowels(false);
+        language.setVowelGroupSize(2);
+        language.setMinLength(2);
+        language.setMaxLength(2);
+
+        language.addLetter(new Letter('a', LetterType.VOWEL), 1);
+        language.addLetter(new Letter('o', LetterType.VOWEL), 1);
+
+        Generator generator = new Generator(language);
+        Name name = generator.generate();
+
+        assertTrue(name.toString().equals("ao") || name.toString().equals("oa"));
+    }
+
+    @Test
+    public void validatorRejectsTooLargeVowelGroups() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleVowels(false);
+        language.setVowelGroupSize(2);
+        language.setMinLength(3);
+        language.setMaxLength(3);
+
+        language.addLetter(new Letter('a', LetterType.VOWEL), 1);
+        language.addLetter(new Letter('o', LetterType.VOWEL), 1);
+
+        Generator generator = new Generator(language);
+        Name name = generator.generate();
+
+        assertTrue(name.toString().equals("ao") || name.toString().equals("oa"));
+    }
+
+    @Test
+    public void validatorAcceptsValidConsonantGroups() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleConsonants(false);
+        language.setConsonantGroupSize(2);
+        language.setMinLength(2);
+        language.setMaxLength(2);
+
+        language.addLetter(new Letter('b', LetterType.CONSONANT), 1);
+        language.addLetter(new Letter('z', LetterType.CONSONANT), 1);
+
+        Generator generator = new Generator(language);
+        Name name = generator.generate();
+
+        assertTrue(name.toString().equals("bz") || name.toString().equals("zb"));
+    }
+
+    @Test
+    public void validatorRejectsTooLargeConsonantGroups() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleConsonants(false);
+        language.setConsonantGroupSize(2);
+        language.setMinLength(3);
+        language.setMaxLength(3);
+
+        language.addLetter(new Letter('b', LetterType.CONSONANT), 1);
+        language.addLetter(new Letter('z', LetterType.CONSONANT), 1);
+
+        Generator generator = new Generator(language);
+        Name name = generator.generate();
+
+        assertTrue(name.toString().equals("bz") || name.toString().equals("zb"));
     }
 }

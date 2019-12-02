@@ -2,7 +2,7 @@ package namegenerator.domain;
 
 import java.util.ArrayList;
 
-public class Name implements Comparable<Name> {
+public class Name {
     private ArrayList<Letter> letters = new ArrayList<>();
 
     public void addLetter(Letter letter) {
@@ -15,11 +15,6 @@ public class Name implements Comparable<Name> {
 
     public int length() {
         return this.letters.size();
-    }
-
-    @Override
-    public int compareTo(Name name) {
-        return this.length() - name.length();
     }
 
     @Override

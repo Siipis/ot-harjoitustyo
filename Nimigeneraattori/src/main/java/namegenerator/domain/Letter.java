@@ -1,5 +1,7 @@
 package namegenerator.domain;
 
+import java.util.Objects;
+
 public class Letter {
     private Character character;
     private LetterType type;
@@ -11,6 +13,19 @@ public class Letter {
 
     public LetterType getType() {
         return type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Letter letter = (Letter) o;
+        return character.equals(letter.character) &&
+            type == letter.type;
     }
 
     @Override

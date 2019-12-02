@@ -6,6 +6,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import namegenerator.domain.*;
+import namegenerator.domain.exceptions.*;
 
 public class LettersController extends ChildController {
 
@@ -66,7 +67,11 @@ public class LettersController extends ChildController {
         slider.setMax(weight.getMaxWeight());
 
         slider.valueProperty().addListener((o, oldValue, newValue) -> {
-            weight.setWeight(oldValue.intValue());
+            try {
+                weight.setWeight(oldValue.intValue());
+            } catch (IntegerOutOfBoundsException e) {
+                slider.setValue((Double) oldValue);
+            }
 
             this.checkForErrors();
         });

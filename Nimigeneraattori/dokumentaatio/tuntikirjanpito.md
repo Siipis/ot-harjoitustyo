@@ -11,4 +11,5 @@
 |        |1     |UI:n korjaus toimivaksi yliopiston koneella |
 |30.11.  |6     |UI:n jakaminen alicontrollereiksi |
 |        |3     |Versio UI:sta, jossa voi muuttaa kirjainten ryhmittymistä |
-| yht    | 26   | | 
+|2.12.   |2     |Testien laajennus |
+| yht    | 28   | | 

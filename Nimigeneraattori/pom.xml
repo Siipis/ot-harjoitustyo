@@ -53,6 +53,7 @@
                         <exclude>namegenerator/Main.class</exclude>
                         <exclude>namegenerator/ui/**</exclude>
                         <exclude>namegenerator/domain/exceptions/*</exclude>
+                        <exclude>namegenerator/domain/DefaultLanguage.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

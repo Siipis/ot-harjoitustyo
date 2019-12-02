@@ -1,6 +1,6 @@
 package namegenerator.domain;
 
-import java.util.Objects;
+import namegenerator.domain.exceptions.*;
 
 public class LetterWeight {
     private static int maxWeight = 15;
@@ -9,7 +9,7 @@ public class LetterWeight {
     private Letter letter;
     private int weight;
 
-    public LetterWeight(Letter letter, int weight) {
+    public LetterWeight(Letter letter, int weight) throws IntegerOutOfBoundsException {
         this.letter = letter;
         this.setWeight(weight);
     }
@@ -22,9 +22,13 @@ public class LetterWeight {
         return weight;
     }
 
-    public void setWeight(int weight) throws IndexOutOfBoundsException {
+    public void setWeight(int weight) throws IntegerOutOfBoundsException {
         if (weight > maxWeight) {
-            throw new IndexOutOfBoundsException("Letter weight can't be higher than " + maxWeight);
+            throw new IntegerOutOfBoundsException("Letter weight can't be higher than " + maxWeight);
+        }
+
+        if (weight < minWeight) {
+            throw new IntegerOutOfBoundsException("Letter weight can't be lower than " + minWeight);
         }
 
         this.weight = weight;
@@ -47,12 +51,6 @@ public class LetterWeight {
             return false;
         }
         LetterWeight compared = (LetterWeight) o;
-        return weight == compared.weight &&
-            letter.equals(compared.letter);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(letter, weight);
+        return letter.equals(compared.letter);
     }
 }

@@ -23,7 +23,7 @@ public class Language {
         this.doubleConsonants = false;
     }
 
-    public void addLetter(Letter letter, int weight) {
+    public void addLetter(Letter letter, int weight) throws IntegerOutOfBoundsException {
         LetterWeight letterWeight = new LetterWeight(letter, weight);
 
         if (this.letters.contains(letterWeight)) {

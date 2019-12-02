@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 public class Generator {
 
-    private Name name;
-
     private Language language;
+
+    private Name name = new Name();
 
     private Random random = new Random();
 
@@ -27,8 +27,6 @@ public class Generator {
 
         name = new Name();
 
-        System.out.println("Starting on a new name...");
-
         while (name.length() < this.pickLength()) {
             Letter letter = this.pickLetter();
 
@@ -37,11 +35,7 @@ public class Generator {
             }
 
             name.addLetter(letter);
-
-            System.out.println("Picked " + letter);
         }
-
-        System.out.println("Final result: " + name);
 
         return name;
     }
@@ -55,8 +49,6 @@ public class Generator {
 
     private Letter pickLetter() {
         ArrayList<Letter> letters = makeLetterList();
-
-        System.out.println("Available letters: " + letters);
 
         if (letters.size() == 0) {
             return null;
@@ -81,7 +73,7 @@ public class Generator {
         return letters;
     }
 
-    public boolean letterIsValid(LetterWeight weight) {
+    private boolean letterIsValid(LetterWeight weight) {
         Letter letter = weight.letter();
 
         int maxExactMatches = Integer.MAX_VALUE;
