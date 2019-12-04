@@ -10,30 +10,12 @@ import namegenerator.domain.exceptions.*;
 
 public class LettersController extends ChildController {
 
-    private Language currentLanguage;
-
     @FXML
     private GridPane letterList;
 
     @Override
     public void render() {
-        if (this.languageHasChanged()) {
-            this.setCurrentLanguage(parent.getLanguage());
-        }
-    }
-
-    private boolean languageHasChanged() {
-        return !parent.getLanguage().equals(currentLanguage);
-    }
-
-    public void setCurrentLanguage(Language language) {
-        this.currentLanguage = language;
-
-        this.initialize();
-    }
-
-    private void initialize() {
-        letterList.getChildren().removeAll();
+        letterList.getChildren().clear();
 
         int row = 0;
         int col = 0;
@@ -68,7 +50,8 @@ public class LettersController extends ChildController {
 
         slider.valueProperty().addListener((o, oldValue, newValue) -> {
             try {
-                weight.setWeight(oldValue.intValue());
+                weight.setWeight(newValue.intValue());
+                slider.setValue(newValue.intValue());
             } catch (IntegerOutOfBoundsException e) {
                 slider.setValue((Double) oldValue);
             }

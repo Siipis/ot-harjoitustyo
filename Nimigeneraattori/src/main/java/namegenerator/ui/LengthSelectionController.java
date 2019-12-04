@@ -23,19 +23,11 @@ public class LengthSelectionController extends ChildController {
 
     @Override
     public void render() {
-        if (this.languageHasChanged()) {
-            this.setCurrentLanguage(parent.getLanguage());
+        if (!parent.getLanguage().equals(currentLanguage)) {
+            this.currentLanguage = parent.getLanguage();
+
+            this.initialize();
         }
-    }
-
-    private boolean languageHasChanged() {
-        return !parent.getLanguage().equals(currentLanguage);
-    }
-
-    public void setCurrentLanguage(Language language) {
-        this.currentLanguage = language;
-
-        this.initialize();
     }
 
     private void initialize() {

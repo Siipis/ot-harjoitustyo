@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.*?>
-<?import namegenerator.ui.control.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <VBox id="mainView" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="namegenerator.ui.Controller">
     <children>
+        <fx:include fx:id="menu" source="menu.fxml" />
         <fx:include fx:id="generator" source="generator.fxml" />
         <fx:include fx:id="letters" source="letter_list.fxml" />
         <fx:include fx:id="lengthSelection" source="length_selection.fxml" />

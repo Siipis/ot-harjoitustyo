@@ -3,8 +3,11 @@ package namegenerator.domain;
 import namegenerator.domain.exceptions.IntegerOutOfBoundsException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Language {
+    private String name;
+
     private ArrayList<LetterWeight> letters;
     private int minLength;
     private int maxLength;
@@ -14,6 +17,7 @@ public class Language {
     private boolean doubleConsonants;
 
     public Language() {
+        this.name = "";
         this.letters = new ArrayList<>();
         this.minLength = 3;
         this.maxLength = 12;
@@ -30,11 +34,6 @@ public class Language {
             return;
         }
         this.letters.add(letterWeight);
-    }
-
-    public void removeLetter(Letter letter) {
-        LetterWeight weight = this.findByLetter(letter);
-        this.letters.remove(weight);
     }
 
     public int highestWeight() {
@@ -55,16 +54,6 @@ public class Language {
 
     public void setLetters(ArrayList<LetterWeight> letters) {
         this.letters = letters;
-    }
-
-    private LetterWeight findByLetter(Letter letter) {
-        for (LetterWeight weight : this.letters) {
-            if (weight.letter().equals(letter)) {
-                return weight;
-            }
-        }
-
-        return null;
     }
 
     public int getMinLength() {
@@ -137,5 +126,36 @@ public class Language {
 
     public void setDoubleConsonants(boolean doubleConsonants) {
         this.doubleConsonants = doubleConsonants;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Language language = (Language) o;
+        return minLength == language.minLength &&
+                maxLength == language.maxLength &&
+                vowelGroupSize == language.vowelGroupSize &&
+                consonantGroupSize == language.consonantGroupSize &&
+                doubleVowels == language.doubleVowels &&
+                doubleConsonants == language.doubleConsonants &&
+                letters.equals(language.letters);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(letters, minLength, maxLength, vowelGroupSize, consonantGroupSize, doubleVowels, doubleConsonants);
     }
 }

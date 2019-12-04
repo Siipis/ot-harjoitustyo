@@ -11,6 +11,9 @@ public class Controller implements Initializable {
     private Language language;
 
     @FXML
+    private MenuController menuController;
+
+    @FXML
     private LengthSelectionController lengthSelectionController;
 
     @FXML
@@ -65,6 +68,7 @@ public class Controller implements Initializable {
      */
     private ChildController[] children() {
         return new ChildController[] {
+            menuController,
             lengthSelectionController,
             generatorController,
             lettersController,

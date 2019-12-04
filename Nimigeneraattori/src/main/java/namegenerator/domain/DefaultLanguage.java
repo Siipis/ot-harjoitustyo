@@ -3,6 +3,8 @@ package namegenerator.domain;
 public class DefaultLanguage extends Language {
     public DefaultLanguage() {
         try {
+            this.setName("English");
+
             this.addLetter(new Letter('a', LetterType.VOWEL), 8);
             this.addLetter(new Letter('b', LetterType.CONSONANT), 2);
             this.addLetter(new Letter('c', LetterType.CONSONANT), 3);

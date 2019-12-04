@@ -13,4 +13,5 @@
 |        |3     |Versio UI:sta, jossa voi muuttaa kirjainten ryhmittymistä |
 |2.12.   |2     |Testien laajennus |
 |        |2     |Dokumentaation päivittäminen |
-| yht    | 30   | | 
+|5.12.   |7     |Versio UI:sta, jossa kielet voi tallentaa tietokantaan |
+| yht    | 37   | | 

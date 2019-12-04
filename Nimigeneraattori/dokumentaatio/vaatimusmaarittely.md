@@ -14,9 +14,9 @@ Sovelluksessa on vain yksi käyttäjärooli eli *normaali käyttäjä*.
     - [x] Käyttäjä voi määrittää, montako konsonanttia sallitaan peräkkäin
     - [x] Käyttäjä voi kytkeä tuplakonsonantit päälle tai pois päältä
     - [x] Käyttäjä voi kytkeä tuplavokaalit päälle tai pois päältä
-- [ ] Käyttäjä voi tallentaa valitsemansa kirjainpainotukset kieleksi
-- [ ] Käyttäjä voi ladata käyttöön jo tallenetun kielen
-- [ ] Käyttäjä voi poistaa luodun kielen
+- [x] Käyttäjä voi tallentaa valitsemansa kirjainpainotukset kieleksi
+- [x] Käyttäjä voi ladata käyttöön jo tallenetun kielen
+- [x] Käyttäjä voi poistaa luodun kielen
 
 ## Jatkokehittelyideoita
 - [ ] Käyttäjä voi lisätä oletusaakkoston ulkopuolisia kirjaimia generaattoriin
