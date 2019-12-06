@@ -1,7 +1,8 @@
 package namegenerator.domain;
 
-import java.util.Objects;
-
+/**
+ * Letter data.
+ */
 public class Letter {
     private Character character;
     private LetterType type;

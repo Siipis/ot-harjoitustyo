@@ -7,7 +7,9 @@ import namegenerator.domain.Language;
 import namegenerator.domain.exceptions.IntegerOutOfBoundsException;
 import namegenerator.ui.control.NumericField;
 
-
+/**
+ * Name length section controller.
+ */
 public class LengthSelectionController extends ChildController {
 
     private Language currentLanguage;
@@ -21,6 +23,9 @@ public class LengthSelectionController extends ChildController {
     @FXML
     private Label error;
 
+    /**
+     * Syncs the UI elements to match the app state.
+     */
     @Override
     public void render() {
         if (!parent.getLanguage().equals(currentLanguage)) {

@@ -6,12 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * UI initializer.
+ */
 public class UI extends Application {
     @Override
     public void init() throws Exception {
         super.init();
     }
 
+    /**
+     * Renders the UI view.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
@@ -23,6 +29,9 @@ public class UI extends Application {
         stage.show();
     }
 
+    /**
+     * Launches the application.
+     */
     public static void main(String[] args) {
         launch(args);
     }

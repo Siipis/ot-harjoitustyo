@@ -8,6 +8,9 @@ import namegenerator.domain.Language;
 import namegenerator.domain.exceptions.IntegerOutOfBoundsException;
 import namegenerator.ui.control.NumericField;
 
+/**
+ * Language spelling section controller.
+ */
 public class LetterConfigController extends ChildController {
 
     private Language currentLanguage;
@@ -27,6 +30,9 @@ public class LetterConfigController extends ChildController {
     @FXML
     private Label error;
 
+    /**
+     * Syncs the UI elements to match the app state.
+     */
     @Override
     public void render() {
         if (!parent.getLanguage().equals(currentLanguage)) {

@@ -9,6 +9,9 @@ import namegenerator.domain.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Menu controller.
+ */
 public class MenuController extends ChildController {
 
     private LanguageDao db;
@@ -20,16 +23,21 @@ public class MenuController extends ChildController {
         this.db = new LanguageDao();
     }
 
+    /**
+     * Syncs the UI elements to match the app state.
+     */
     @Override
     public void render() {
         saveOption.setDisable(parent.hasError());
     }
 
-    public void handleNewClick(ActionEvent event) {
+    @FXML
+    private void handleNewClick(ActionEvent event) {
         parent.setLanguage(new DefaultLanguage());
     }
 
-    public void handleOpenClick(ActionEvent event) {
+    @FXML
+    private void handleOpenClick(ActionEvent event) {
         ArrayList<Language> languages = db.findAll();
         List<String> names = languages.stream().map(Language::getName).collect(Collectors.toList());
 
@@ -51,7 +59,8 @@ public class MenuController extends ChildController {
         });
     }
 
-    public void handleSaveClick(ActionEvent event) {
+    @FXML
+    private void handleSaveClick(ActionEvent event) {
         Language language = parent.getLanguage();
 
         TextInputDialog dialog = new TextInputDialog(language.getName().length() > 0 ? language.getName() : "");
@@ -68,7 +77,8 @@ public class MenuController extends ChildController {
         });
     }
 
-    public void handleDeleteClick(ActionEvent event) {
+    @FXML
+    private void handleDeleteClick(ActionEvent event) {
         ArrayList<Language> languages = db.findAll();
         List<String> names = languages.stream().map(Language::getName).collect(Collectors.toList());
 

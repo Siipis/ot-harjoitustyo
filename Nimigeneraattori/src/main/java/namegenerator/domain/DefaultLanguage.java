@@ -1,5 +1,8 @@
 package namegenerator.domain;
 
+/**
+ * Default language configuration.
+ */
 public class DefaultLanguage extends Language {
     public DefaultLanguage() {
         try {

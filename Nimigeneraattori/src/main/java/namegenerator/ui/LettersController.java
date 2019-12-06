@@ -8,11 +8,17 @@ import javafx.scene.layout.VBox;
 import namegenerator.domain.*;
 import namegenerator.domain.exceptions.*;
 
+/**
+ * Letter weight section controller.
+ */
 public class LettersController extends ChildController {
 
     @FXML
     private GridPane letterList;
 
+    /**
+     * Syncs the UI elements to match the app state.
+     */
     @Override
     public void render() {
         letterList.getChildren().clear();

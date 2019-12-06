@@ -1,10 +1,12 @@
 package namegenerator.domain;
 
-import namegenerator.domain.exceptions.IntegerOutOfBoundsException;
+import namegenerator.domain.exceptions.*;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
+/**
+ * Language data.
+ */
 public class Language {
     private String name;
 

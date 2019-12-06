@@ -7,14 +7,25 @@ import org.json.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Data access object for the Language class.
+ */
 public class LanguageDao implements Dao<Language, String> {
 
     private Database db;
 
+    /**
+     * Constructs the LanguageDao object.
+     */
     public LanguageDao() {
         this("jdbc:sqlite:database.db");
     }
 
+    /**
+     * Constructs the LanguageDao object using a specific database connection.
+     *
+     * @param db database url
+     */
     public LanguageDao(String db) {
         try {
             this.db = new Database(db);
@@ -25,6 +36,11 @@ public class LanguageDao implements Dao<Language, String> {
         }
     }
 
+    /**
+     * Creates the language table if it doesn't exist.
+     *
+     * @throws SQLException if the table cannot be created
+     */
     private void createTable() throws SQLException {
         Connection c = db.connection();
         PreparedStatement stmt = c.prepareStatement("CREATE TABLE IF NOT EXISTS language (" +
@@ -44,6 +60,11 @@ public class LanguageDao implements Dao<Language, String> {
         c.close();
     }
 
+    /**
+     * Fetches a single language record.
+     *
+     * @param name language name
+     */
     @Override
     public Language findOne(String name) {
         try {
@@ -71,6 +92,11 @@ public class LanguageDao implements Dao<Language, String> {
         return null;
     }
 
+    /**
+     * Fetch all language records.
+     *
+     * @return a list containing all languages
+     */
     @Override
     public ArrayList<Language> findAll() {
         ArrayList<Language> languages = new ArrayList<>();
@@ -95,6 +121,12 @@ public class LanguageDao implements Dao<Language, String> {
         return languages;
     }
 
+    /**
+     * Stores a Language object into the database.
+     *
+     * @param language language to store
+     * @return stored object
+     */
     @Override
     public Language saveOrUpdate(Language language) {
         try {
@@ -114,6 +146,12 @@ public class LanguageDao implements Dao<Language, String> {
         return null;
     }
 
+    /**
+     * Stores a new language record.
+     *
+     * @param language language to store
+     * @throws SQLException if the object could not be stored
+     */
     private void save(Language language) throws SQLException {
         Connection c = db.connection();
 
@@ -130,6 +168,12 @@ public class LanguageDao implements Dao<Language, String> {
         c.close();
     }
 
+    /**
+     * Updates an existing language record.
+     *
+     * @param language language to update
+     * @throws SQLException if the record could not be updated
+     */
     private void update(Language language) throws SQLException {
         Connection c = db.connection();
 
@@ -151,6 +195,11 @@ public class LanguageDao implements Dao<Language, String> {
         c.close();
     }
 
+    /**
+     * Deletes a single language record.
+     *
+     * @param name language name
+     */
     @Override
     public void delete(String name) {
         try {
@@ -167,6 +216,14 @@ public class LanguageDao implements Dao<Language, String> {
         }
     }
 
+    /**
+     * Inserts a language object to a SQL query statement.
+     *
+     * @param stmt SQL query
+     * @param language Language object
+     * @return prepared statement with inserted values
+     * @throws SQLException if the statement cannot be
+     */
     private PreparedStatement bindLanguageToStatement(PreparedStatement stmt, Language language) throws SQLException {
         stmt.setString(1, this.lettersToJson(language).toString());
         stmt.setInt(2, language.getMinLength());
@@ -180,6 +237,14 @@ public class LanguageDao implements Dao<Language, String> {
         return stmt;
     }
 
+    /**
+     * Converts a ResultSet into a corresponding Language object.
+     *
+     * @param result database response
+     * @return corresponding Language object
+     * @throws SQLException if the result could not be read
+     * @throws IntegerOutOfBoundsException if the language configuration is invalid
+     */
     private Language languageFromResult(ResultSet result) throws SQLException, IntegerOutOfBoundsException {
         Language language = new Language();
 
@@ -195,6 +260,12 @@ public class LanguageDao implements Dao<Language, String> {
         return language;
     }
 
+    /**
+     * Converts a Language's letters into JSON.
+     *
+     * @param language Language object
+     * @return JSON representation of the letters
+     */
     private JSONArray lettersToJson(Language language) {
         JSONArray letters = new JSONArray();
 
@@ -210,6 +281,12 @@ public class LanguageDao implements Dao<Language, String> {
         return letters;
     }
 
+    /**
+     * Converts a JSON letterlist to an ArrayList.
+     *
+     * @param jsonString JSON object
+     * @return ArrayList representation of the letters
+     */
     private ArrayList<LetterWeight> lettersFromJson(String jsonString) {
         ArrayList<LetterWeight> letters = new ArrayList<>();
         JSONArray json = new JSONArray(jsonString);
@@ -225,6 +302,13 @@ public class LanguageDao implements Dao<Language, String> {
         return letters;
     }
 
+    /**
+     * Converts a JSON letter into a Letter.
+     *
+     * @param json JSON object
+     * @return LetterWeight representation of letter
+     * @throws IntegerOutOfBoundsException
+     */
     private LetterWeight letterFromJson(JSONObject json) throws IntegerOutOfBoundsException {
         String stringChar = (String) json.get("char");
         char c = stringChar.charAt(0);

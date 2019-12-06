@@ -6,6 +6,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.*;
 import namegenerator.domain.*;
 
+/**
+ * Main UI controller.
+ */
 public class Controller implements Initializable {
 
     private Language language;
@@ -25,6 +28,9 @@ public class Controller implements Initializable {
     @FXML
     private LetterConfigController letterConfigController;
 
+    /**
+     * Initializes the controller, used by JavaFX.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Bind main controller to child controllers
@@ -35,22 +41,40 @@ public class Controller implements Initializable {
         this.setLanguage(new DefaultLanguage());
     }
 
+    /**
+     * Sets the current language.
+     *
+     * @param language current language
+     */
     public void setLanguage(Language language) {
         this.language = language;
 
         this.renderChildren();
     }
 
+    /**
+     * Returns the current language
+     *
+     * @return current language
+     */
     public Language getLanguage() {
         return language;
     }
 
+    /**
+     * Tells all child controllers to update the UI.
+     */
     public void renderChildren() {
         for (ChildController child : this.children()) {
             child.render();
         }
     }
 
+    /**
+     * Check whether any child controller has errors.
+     *
+     * @return if any controller has an error
+     */
     public boolean hasError() {
         for (ChildController child : this.children()) {
             if (child.hasError()) {

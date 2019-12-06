@@ -1,13 +1,12 @@
 package namegenerator.domain;
 
-import namegenerator.domain.exceptions.LettersNotFoundException;
+import namegenerator.domain.exceptions.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.*;
 
+/**
+ * Random name generator.
+ */
 public class Generator {
 
     private Language language;
@@ -16,10 +15,20 @@ public class Generator {
 
     private Random random = new Random();
 
+    /**
+     * Constructs a Generator object using a given language.
+     * @param language
+     */
     public Generator(Language language) {
         this.language = language;
     }
 
+    /**
+     * Generates a random name.
+     *
+     * @return random name
+     * @throws LettersNotFoundException if the language contains no letters
+     */
     public Name generate() throws LettersNotFoundException {
         if (language.letters().size() == 0) {
             throw new LettersNotFoundException();
@@ -40,6 +49,10 @@ public class Generator {
         return name;
     }
 
+    /**
+     * Picks a name length to generate.
+     * @return random length
+     */
     private int pickLength() {
         int min = language.getMinLength();
         int max = language.getMaxLength();
@@ -47,6 +60,11 @@ public class Generator {
         return random.nextInt((max - min) + 1) + min;
     }
 
+    /**
+     * Picks a letter from a letter list.
+     *
+     * @return random letter
+     */
     private Letter pickLetter() {
         ArrayList<Letter> letters = makeLetterList();
 
@@ -59,6 +77,11 @@ public class Generator {
         return letters.get(index);
     }
 
+    /**
+     * Constructs a list of all available letters.
+     *
+     * @return list of letters
+     */
     public ArrayList<Letter> makeLetterList() {
         ArrayList<Letter> letters = new ArrayList<>();
 
@@ -73,6 +96,12 @@ public class Generator {
         return letters;
     }
 
+    /**
+     * Checks that a letter can be picked.
+     *
+     * @param weight letter to check
+     * @return true if the letter is valid
+     */
     private boolean letterIsValid(LetterWeight weight) {
         Letter letter = weight.letter();
 
@@ -97,6 +126,12 @@ public class Generator {
         return countExactMatches(letter) < maxExactMatches && countTypeMatches(letter) < maxTypeMatches;
     }
 
+    /**
+     * Counts how many times the letter occurs at the end of the name.
+     *
+     * @param letter letter to check
+     * @return number of occurrences
+     */
     private int countExactMatches(Letter letter) {
         int count = 0;
 
@@ -111,6 +146,12 @@ public class Generator {
         return count;
     }
 
+    /**
+     * Counts how many times the letter type occurs at the end of the name.
+     *
+     * @param letter letter to check
+     * @return number of occurrences
+     */
     private int countTypeMatches(Letter letter) {
         int count = 0;
 
@@ -125,6 +166,9 @@ public class Generator {
         return count;
     }
 
+    /**
+     * Reverses the name for easier lookup.
+     */
     private ArrayList<Letter> reverse(Name name) {
         ArrayList<Letter> reversed = new ArrayList<>(name.letters());
 
