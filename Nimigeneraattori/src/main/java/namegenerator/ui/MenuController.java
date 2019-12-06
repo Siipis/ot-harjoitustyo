@@ -71,6 +71,10 @@ public class MenuController extends ChildController {
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(name -> {
+            if (name.length() == 0) {
+                return;
+            }
+
             language.setName(name);
 
             db.saveOrUpdate(language);
