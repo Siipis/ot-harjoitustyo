@@ -153,9 +153,4 @@ public class Language {
                 doubleConsonants == language.doubleConsonants &&
                 letters.equals(language.letters);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(letters, minLength, maxLength, vowelGroupSize, consonantGroupSize, doubleVowels, doubleConsonants);
-    }
 }

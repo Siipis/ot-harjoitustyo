@@ -1,16 +1,10 @@
 package namegenerator.dao;
 
-import namegenerator.domain.Language;
-import namegenerator.domain.Letter;
-import namegenerator.domain.LetterType;
-import namegenerator.domain.LetterWeight;
-import namegenerator.domain.exceptions.IntegerOutOfBoundsException;
+import namegenerator.domain.*;
+import namegenerator.domain.exceptions.*;
 import org.json.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class LanguageDao implements Dao<Language, String> {
@@ -18,8 +12,12 @@ public class LanguageDao implements Dao<Language, String> {
     private Database db;
 
     public LanguageDao() {
+        this("jdbc:sqlite:database.db");
+    }
+
+    public LanguageDao(String db) {
         try {
-            this.db = new Database("jdbc:sqlite:database.db");
+            this.db = new Database(db);
 
             this.createTable();
         } catch (SQLException e) {

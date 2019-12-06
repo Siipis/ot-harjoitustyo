@@ -1,6 +1,7 @@
 package namegenerator.ui;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import namegenerator.dao.LanguageDao;
 import namegenerator.domain.*;
@@ -10,7 +11,10 @@ import java.util.stream.Collectors;
 
 public class MenuController extends ChildController {
 
-    LanguageDao db;
+    private LanguageDao db;
+
+    @FXML
+    private MenuItem saveOption;
 
     public MenuController() {
         this.db = new LanguageDao();
@@ -18,7 +22,7 @@ public class MenuController extends ChildController {
 
     @Override
     public void render() {
-        // TODO: disable menu on language error
+        saveOption.setDisable(parent.hasError());
     }
 
     public void handleNewClick(ActionEvent event) {

@@ -1,6 +1,5 @@
-package namegenerator;
+package namegenerator.domain;
 
-import namegenerator.domain.*;
 import namegenerator.domain.exceptions.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -218,5 +217,22 @@ public class GeneratorTest {
         Name name = generator.generate();
 
         assertTrue(name.toString().equals("bz") || name.toString().equals("zb"));
+    }
+
+    @Test
+    public void validatorAcceptsAmbiguousLetters() throws IntegerOutOfBoundsException, LettersNotFoundException {
+        Language language = new Language();
+        language.setDoubleConsonants(true);
+        language.setDoubleVowels(false);
+        language.setConsonantGroupSize(2);
+        language.setMinLength(2);
+        language.setMaxLength(2);
+
+        language.addLetter(new Letter('y', LetterType.BOTH), 1);
+
+        Generator generator = new Generator(language);
+        Name name = generator.generate();
+
+        assertEquals("yy", name.toString());
     }
 }

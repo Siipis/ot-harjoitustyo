@@ -1,6 +1,5 @@
-package namegenerator;
+package namegenerator.dao;
 
-import namegenerator.dao.Database;
 import org.junit.Before;
 import org.junit.Test;
 
