@@ -14,4 +14,6 @@
 |2.12.   |2     |Testien laajennus |
 |        |2     |Dokumentaation päivittäminen |
 |5.12.   |7     |Versio UI:sta, jossa kielet voi tallentaa tietokantaan |
-| yht    | 37   | | 
+|6.12.   |3     |Testien laajennut ja JavaDoc-kuvaukset |
+|        |2      |Dokumentaation päivittäminen |
+| yht    | 42   | | 
