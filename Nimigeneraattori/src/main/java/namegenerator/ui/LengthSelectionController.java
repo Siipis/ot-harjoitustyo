@@ -52,10 +52,12 @@ public class LengthSelectionController extends ChildController {
             try {
                 if (field == minLength) {
                     currentLanguage.setMinLength(minLength.value());
+                    currentLanguage.setMaxLength(maxLength.value());
                 }
 
                 if (field == maxLength) {
                     currentLanguage.setMaxLength(maxLength.value());
+                    currentLanguage.setMinLength(minLength.value());
                 }
             } catch (IntegerOutOfBoundsException e) {
                 this.showError(e.getMessage());
