@@ -1,56 +1,56 @@
 # Pakkausrakenne
-Ohjelma rakentuu kahdesta sovelluskerroksesta, joista alempi on jakautunut datan tallentamiseen ja sovelluslogiikkaan:
+Sovellus noudattaa MVC-arkitehtuurimallia, missä näkymästä (view) vastaavat FXML-tiedostot ja sovelluslogiikasta
+FXML-controllerit. Pakkaustasolla modelia ja controlleria vastaavat seuraavat pakkaukset: 
 
 ![pakkausrakenne](kuvat/pakkausrakenne.jpg)
 
-`namegenerator.ui` sisältää JavaFX:ää hyödyntävän käyttöliittymän ja siihen liittyvät controller-luokat. 
+`namegenerator.ui` sisältää käyttöliittymä piirtämiseen ja päivittämiseen liittyvät controller-luokat. 
 
-`namegenerator.domain` sisältää sovelluslogiikan ja dataoliot.
+`namegenerator.domain` sisältää controllerien hyödyntämät apuluokat ja datamallit.
 
-`namegenerator.dao` sisältää tietojen tallentamisesta vastaavat luokat.
+`namegenerator.dao` vastaa datamallien tallentamisesta tietokantaan.
 
 # Käyttöliittymä
-Käyttöliittymässä on yksi näkymä, joka jakautuu useampaan osioon:
+Käyttöliittymässä on yksi näkymä, joka jakautuu useampaan osioon (värjätty alla kuvassa). Nämä rakentuvat FMXL-tiedostoista, 
+jotka elävät omissa tiedostoissaan kansiossa `src/main/resources/fxml`. 
+Ulkoasun tyylit on eritelty tiedostoon `src/main/resources/styles/stylesheet.css`.
 
 ![näkymän osiot](kuvat/sovellus_osiot.png)
 
-Osiot ovat ylhäältä alas seuraavat:
+Osioiden controllerit vastaavat kukin oman osionsa päivittämisestä ja tapahtumahallinnasta. Kun sovelluksen tila muuttuu, pääcontrolleri (`Controller`) kutsuu näiden controllerien metodia `render()`,
+jolloin osiot päivittyvät synkronoidusti.
+
+Controllerit ovat ylhäältä alas seuraavat:
 * Oranssi: valikko (`MenuController`)
 * Sininen: generaattori (`GeneratorController`)
 * Vihreä: kirjainpainotukset (`LettersController`)
 * Punainen: nimen pituus (`LengthSelectionController`)
 * Keltainen: kirjainryhmittymät (`LetterConfigController`)
 
-Näkymät rakentuvat FMXL-tiedostoista, jotka elävät omissa tiedostoissaan kansiossa `src/main/resources/fxml`. 
-Ulkoasun tyylit on eritelty tiedostoon `src/main/resources/styles/stylesheet.css`.
-
-Osioiden controllerit vastaavat kukin oman osionsa päivittämisestä ja tapahtumahallinnasta. 
-Kun sovelluksen tila muuttuu, pääcontrolleri (`Controller`) kutsuu näiden controllerien metodia `render()`,
-jolloin osiot päivittyvät synkronoidusti.
-
 # Luokkarakenne
 ![luokkakaavio](kuvat/luokkakaavio.jpg)
 
-Yllä luokkien tärkeimmät yhteydet ja niiden pakkaukset. 
-
-### UI-luokista
+### Controllereista tarkemmin
 `namegenerator.ui`-pakkauksessa elävä `Controller` saa JavaFX:n 
 konvention mukaisesti referenssin näkymän alacontrollereihin (eng. nested controllers). Tiedonkulun helpottamiseksi 
 kaikille alacontrollereille annetaan myös sovelluksen käynnistämisen yhteydessä viite pääcontrolleriin.
 
-Pääcontrolleri hallinnoi riippuvuuksia olioihin, jotka vaikuttavat koko sovelluksen toimintaan. 
-Tämän lisäksi alacontrollereilla voi olla välillisiä tai suoria riippuvuuksia alempaan sovelluskerrokseen. 
+Pääcontrolleri hallinnoi riippuvuuksia luokkiin, jotka vaikuttavat koko sovelluksen toimintaan. 
+Tämän lisäksi alacontrollereilla on välillisiä tai suoria riippuvuuksia alempaan sovelluskerrokseen.
+Esimerkiksi `MenuController` vastaa tiedon tallentamiseen ja lataamiseen liittyvistä toiminnoista ja 
+sisältää siksi siippuvuuden `LanguageDao`-luokkaan.
 
 **Miksi useat controllerit?** Syitä jaolle on useita. Tärkein syy on, että ulkoasun osiot on näin mahdollista jakaa 
-itsenäisiin FXML-tiedostoihin, jolloin ulkoasun rakenne on helpommin hahmotettavissa koodista. JavaFX olettaa, että
-jokaisella tiedostolla on jokin controlleri, jolloin Single Responsibility Principlen hengessä on luontaista 
-antaa jokaiselle tiedostolle myös itsenäinen controllerinsa: pääcontrolleri ei toisin sanoen täyty sekavista, toisiinsa
+itsenäisiin FXML-tiedostoihin, jolloin ulkoasun rakenne on helpommin hahmotettavissa koodista. Koska JavaFX 
+olettaa, että jokaisella tiedostolla on controlleri, on Single Responsibility Principlen hengessä luontaista 
+antaa jokaiselle tiedostolle itsenäinen controllerinsa; pääcontrolleri ei täyty sekavista, toisiinsa
 liittymättömistä metodeista, vaan jokaisen osion logiikasta vastaa oma controller-luokkansa.
 
 # Sovelluslogiikka
 Alla yleiskatsaus nimen generointiin. Kun käyttäjä klikkaa Generate-nappia, käsittelee `GeneratorController` 
 klikkaustapahtuman ja kutsuu `Generator`-luokkaa. Generaattori palauttaa sen `Name`-luokan olion, 
 jonka sisältämän tuloksen controlleri tulostaa käyttäjän ruudulle.
+
 ![nimen generointi](kuvat/nimen_generointi.png)
 
 ## Generaattori yksityiskohtaisemmin

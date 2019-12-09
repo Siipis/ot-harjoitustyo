@@ -5,7 +5,7 @@ import namegenerator.domain.exceptions.*;
 import java.util.ArrayList;
 
 /**
- * Language data.
+ * Language model.
  */
 public class Language {
     private String name;

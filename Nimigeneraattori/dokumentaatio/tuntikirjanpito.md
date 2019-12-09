@@ -15,5 +15,6 @@
 |        |2     |Dokumentaation päivittäminen |
 |5.12.   |7     |Versio UI:sta, jossa kielet voi tallentaa tietokantaan |
 |6.12.   |3     |Testien laajennut ja JavaDoc-kuvaukset |
-|        |2      |Dokumentaation päivittäminen |
-| yht    | 42   | | 
+|        |2     |Dokumentaation päivittäminen |
+|9.12.   |2     |Dokumentaation päivittäminen ja testien laajennus |
+| yht    | 44   | | 

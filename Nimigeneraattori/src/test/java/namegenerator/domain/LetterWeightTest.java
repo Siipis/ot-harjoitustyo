@@ -32,6 +32,13 @@ public class LetterWeightTest {
     }
 
     @Test
+    public void equalsReturnsTrueOnIdenticalWeights() throws IntegerOutOfBoundsException {
+        LetterWeight w1 = new LetterWeight(letter, 2);
+
+        assertEquals(w1, w1);
+    }
+
+    @Test
     public void equalsReturnsTrueOnDifferentWeight() throws IntegerOutOfBoundsException {
         LetterWeight w1 = new LetterWeight(letter, 2);
         LetterWeight w2 = new LetterWeight(letter, 5);

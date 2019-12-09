@@ -3,7 +3,7 @@ package namegenerator.domain;
 import namegenerator.domain.exceptions.*;
 
 /**
- * Letter weight data.
+ * Letter weight model.
  */
 public class LetterWeight {
     private static int maxWeight = 15;

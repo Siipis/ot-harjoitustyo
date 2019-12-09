@@ -21,4 +21,11 @@ public class LetterTest {
 
         assertNotEquals(l1, l2);
     }
+
+    @Test
+    public void equalsReturnsFalseOnNull() {
+        Letter l = new Letter('a', LetterType.VOWEL);
+
+        assertNotEquals(null, l);
+    }
 }

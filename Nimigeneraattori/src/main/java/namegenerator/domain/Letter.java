@@ -1,7 +1,7 @@
 package namegenerator.domain;
 
 /**
- * Letter data.
+ * Letter model.
  */
 public class Letter {
     private Character character;

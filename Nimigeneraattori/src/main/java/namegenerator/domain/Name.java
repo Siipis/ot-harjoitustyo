@@ -3,7 +3,7 @@ package namegenerator.domain;
 import java.util.ArrayList;
 
 /**
- * Name data.
+ * Name model.
  */
 public class Name {
     private ArrayList<Letter> letters = new ArrayList<>();
