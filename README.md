@@ -9,7 +9,7 @@ Sovelluksen voi käynnistää komennolla `mvn compile exec:java -q`
 * Testikattavuusraportti [1]: `mvn jacoco:report`
 * Suoritettavan jarin generointi [2]: `mvn package`
 * JavaDocin generointi: [3] `mvn javadoc:javadoc`
-* Checkstyle-tarkastus [4]: `mvn jxr:jr checkstyle:checkstyle`
+* Checkstyle-tarkastus [4]: `mvn jxr:jxr checkstyle:checkstyle`
 
 [1] Raporttia voi tarkastella avaamalla tiedosto `target/site/jacoco/index.html`
 
