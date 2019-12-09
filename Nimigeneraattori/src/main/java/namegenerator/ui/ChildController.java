@@ -32,7 +32,7 @@ public abstract class ChildController {
     }
 
     /**
-     * Sets the error status.
+     * Broadcasts the error status to all controllers.
      *
      * @param hasError error status
      */
