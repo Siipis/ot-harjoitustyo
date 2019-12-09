@@ -35,6 +35,8 @@ Sovelluksen voi käynnistää komennolla `mvn compile exec:java -q`
 
 [Viikko 6](https://github.com/Siipis/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/Siipis/ot-harjoitustyo/releases/tag/palautus)
+
 # Kurssimateriaali
 Tämä projekti on osa Helsingin yliopiston kurssia Ohjelmistotekniikka.
 
